@@ -1,4 +1,12 @@
-import { AppBar, Box, Button, Container, Typography } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import LogoImg from "../assets/logo.png";
 import { StyledButton } from "./Login";
@@ -10,8 +18,10 @@ type NavPropTypes = {
 };
 
 const Nav: React.FC<NavPropTypes> = ({ user, logout, children }) => {
+  const mediaQueryChecker = useMediaQuery("(min-width:400px)");
+
   return (
-    <Container sx={{ px: 0 }}>
+    <Container sx={{ px: 0, width: "100%" }}>
       <AppBar
         position="static"
         sx={{
@@ -57,16 +67,25 @@ const Nav: React.FC<NavPropTypes> = ({ user, logout, children }) => {
             </Typography>
           </Box>
         </Box>
-        {user && (
-          <StyledButton
-            variant="contained"
-            endIcon={<LogoutIcon />}
-            sx={{ height: "50%" }}
-            onClick={() => logout()}
-          >
-            Log out
-          </StyledButton>
-        )}
+        {user ? (
+          mediaQueryChecker ? (
+            <StyledButton
+              variant="contained"
+              endIcon={<LogoutIcon />}
+              sx={{ height: "50%" }}
+              onClick={() => logout()}
+            >
+              Log Out
+            </StyledButton>
+          ) : (
+            <IconButton
+              sx={{ mr: 1, color: "#FFDE59" }}
+              onClick={() => logout()}
+            >
+              <LogoutIcon />
+            </IconButton>
+          )
+        ) : null}
       </AppBar>
       {children}
     </Container>

@@ -67,6 +67,7 @@ const Login: React.FC<{ login: (name: string) => void }> = ({ login }) => {
             {...register("name", {
               required: "Please provide your name",
             })}
+            helperText={errors ? errors?.name?.message : ""}
           />
         </CardContent>
         <CardActions

@@ -3,7 +3,6 @@ import {
   Box,
   Card,
   CardActionArea,
-  CardHeader,
   CardMedia,
   Container,
   Grid,
@@ -56,35 +55,44 @@ const CourseList: React.FC<{ user: string }> = ({ user }) => {
 
   return (
     <>
-      <Container sx={{ mt: 2, px: 0 }}>
+      <Container sx={{ mt: 2, px: 2 }}>
         <Typography
           variant="h2"
           sx={{ fontFamily: "Poppins" }}
         >
           Welcome
         </Typography>
-        <Typography sx={{ fontFamily: "Poppins", fontSize: 20 }}>
+        <Typography sx={{ fontFamily: "Poppins", fontSize: 20, mb: 3 }}>
           {user}
         </Typography>
 
-        <Box sx={{ mt: 3 }}>
-          <Typography
-            variant="h4"
-            sx={{ mb: 1 }}
+        <Grid
+          container
+          spacing={{ xs: 2 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{ justifyContent: "center" }}
+        >
+          <Grid
+            item
+            xs={4}
+            sm={8}
+            md={12}
           >
-            Courses
-          </Typography>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: 2,
-            }}
-          >
-            {courseSelection.map(({ image, title, description }, index) => (
+            <Typography variant="h4">Courses</Typography>
+          </Grid>
+
+          {courseSelection.map(({ image, title, description }, index) => (
+            <Grid
+              item
+              xs={4}
+              key={index}
+              sx={{ maxWidth: "350px", p: 0 }}
+            >
               <Card
-                key={index}
-                sx={{ backgroundColor: "#13325B", color: "white" }}
+                sx={{
+                  backgroundColor: "#13325B",
+                  color: "white",
+                }}
               >
                 <CardActionArea
                   onClick={() =>
@@ -121,9 +129,9 @@ const CourseList: React.FC<{ user: string }> = ({ user }) => {
                   </Typography>
                 </CardActionArea>
               </Card>
-            ))}
-          </Box>
-        </Box>
+            </Grid>
+          ))}
+        </Grid>
       </Container>
       <FormPayment
         formDetails={formDetails}
