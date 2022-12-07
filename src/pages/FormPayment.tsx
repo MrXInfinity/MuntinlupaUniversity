@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  Box,
   Dialog,
   DialogActions,
   DialogContent,
@@ -9,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useForm, UseFormRegister } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { StyledButton } from "./Login";
@@ -58,8 +57,6 @@ const FormPayment: React.FC<{
     submittingForm();
     setIsSnackBarOpen(true);
   };
-
-  console.log(errors);
 
   return (
     <Dialog

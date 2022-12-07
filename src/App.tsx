@@ -6,7 +6,6 @@ import { useState } from "react";
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const login = (name: string) => {
     setCurrentUser(name);

@@ -9,12 +9,6 @@ import {
 import React from "react";
 import ReceiptData from "../receiptData.json";
 
-// type eachReceiptData = {
-//   No. of Units: number;
-//   numberOfLabs: number;
-//   InitialAmount: number;
-// };
-
 const Receipt: React.FC<{ receiptLabel: string }> = ({ receiptLabel }) => {
   if (receiptLabel) {
     const filteredData = ReceiptData[receiptLabel as keyof typeof ReceiptData];
@@ -39,8 +33,3 @@ const Receipt: React.FC<{ receiptLabel: string }> = ({ receiptLabel }) => {
   return <></>;
 };
 export default Receipt;
-
-// <TableContainer component={Paper}>
-//       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-//         <TableHead>
-//           <TableRow></TableRow>

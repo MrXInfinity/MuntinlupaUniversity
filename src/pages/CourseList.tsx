@@ -15,7 +15,6 @@ import FashionImg from "../assets/FashionDesignImg1.png";
 import ITImg from "../assets/InformationTechImg1.png";
 import FormPayment from "./FormPayment";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { set } from "react-hook-form";
 
 const courseSelection = [
   {
