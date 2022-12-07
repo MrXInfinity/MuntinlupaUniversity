@@ -5,6 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Grid,
   TextField,
   Typography,
 } from "@mui/material";
@@ -12,6 +13,7 @@ import { useForm, UseFormRegister } from "react-hook-form";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { StyledButton } from "./Login";
+import Receipt from "./Receipt";
 
 type FormData = {
   registrantName: string;
@@ -21,15 +23,22 @@ type FormData = {
 };
 
 const FormPayment: React.FC<{
-  formDetails: { userName: string; courseTitle: string; open: boolean };
+  formDetails: {
+    userName: string;
+    courseTitle: string;
+    open: boolean;
+    label: string;
+  };
   dialogClose: () => void;
   setFormSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   setIsSnackBarOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  submittingForm: () => void;
 }> = ({
-  formDetails: { userName, courseTitle, open },
+  formDetails: { userName, courseTitle, open, label },
   dialogClose,
   setFormSubmitted,
   setIsSnackBarOpen,
+  submittingForm,
 }) => {
   const {
     register,
@@ -46,7 +55,7 @@ const FormPayment: React.FC<{
 
   const formSubmission = () => {
     setFormSubmitted(true);
-    dialogClose();
+    submittingForm();
     setIsSnackBarOpen(true);
   };
 
@@ -56,6 +65,8 @@ const FormPayment: React.FC<{
     <Dialog
       open={open}
       onClose={dialogClose}
+      maxWidth={"sm"}
+      fullWidth
     >
       <DialogTitle sx={{ display: "flex", alignItems: "center", pb: 0 }}>
         <Typography variant="h6">Application Form</Typography>
@@ -70,44 +81,73 @@ const FormPayment: React.FC<{
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: 2 }}
         >
-          <TextField
-            fullWidth
-            type="text"
-            variant="outlined"
-            label="Chosen Course"
-            disabled
-            value={courseTitle}
-            {...register("chosenCourse")}
-          />
-          <TextField
-            fullWidth
-            type="text"
-            variant="outlined"
-            label="Name"
-            disabled
-            value={userName}
-            {...register("registrantName")}
-          />
-
-          <TextField
-            fullWidth
-            type="email"
-            variant="outlined"
-            label="Email"
-            {...register("email", { required: "Please provide your email" })}
-            helperText={errors ? errors?.email?.message : ""}
-          />
-          <TextField
-            fullWidth
-            type="number"
-            variant="outlined"
-            label="Contact Number"
-            {...register("contactNumber", {
-              required: "Please provide your contact number",
-            })}
-            helperText={errors ? errors?.contactNumber?.message : ""}
-          />
+          <Grid
+            container
+            spacing={{ xs: 2 }}
+            columns={{ xs: 4, sm: 8 }}
+            sx={{ justifyContent: "center" }}
+          >
+            <Grid
+              item
+              xs={4}
+            >
+              <TextField
+                fullWidth
+                type="text"
+                variant="outlined"
+                label="Chosen Course"
+                disabled
+                value={courseTitle}
+                {...register("chosenCourse")}
+              />
+            </Grid>
+            <Grid
+              item
+              xs={4}
+            >
+              <TextField
+                fullWidth
+                type="text"
+                variant="outlined"
+                label="Name"
+                disabled
+                value={userName}
+                {...register("registrantName")}
+              />
+            </Grid>
+            <Grid
+              item
+              xs={4}
+            >
+              <TextField
+                fullWidth
+                type="email"
+                variant="outlined"
+                label="Email"
+                {...register("email", {
+                  required: "Please provide your email",
+                })}
+                helperText={errors ? errors?.email?.message : ""}
+              />
+            </Grid>
+            <Grid
+              item
+              xs={4}
+            >
+              <TextField
+                fullWidth
+                type="number"
+                variant="outlined"
+                label="Contact Number"
+                {...register("contactNumber", {
+                  required: "Please provide your contact number",
+                })}
+                helperText={errors ? errors?.contactNumber?.message : ""}
+              />
+            </Grid>
+          </Grid>
         </DialogContent>
+        <Receipt receiptLabel={label} />
         <DialogActions sx={{ px: 3, pb: 2, pt: 0 }}>
           <StyledButton
             sx={{ color: "white" }}

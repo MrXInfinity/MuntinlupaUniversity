@@ -1,0 +1,23 @@
+{
+  "Accountancy": {
+    "No. of Units": 24,
+    "No. of Labs": 3,
+    "Initial Amount": 14690,
+    "Misc. Fees": 2310,
+    "Total Amount": 17000
+  },
+  "FashionDesign": {
+    "No. of Units": 20,
+    "No. of Labs": 5,
+    "Initial Amount": 13750,
+    "Misc. Fees": 2250,
+    "Total Amount": 16000
+  },
+  "InformationTechnology": {
+    "No. of Units": 22,
+    "No. of Labs": 4,
+    "Initial Amount": 15900,
+    "Misc. Fees": 3100,
+    "Total Amount": 19000
+  }
+}
